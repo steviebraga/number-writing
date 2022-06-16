@@ -3,6 +3,7 @@ package dev.stevie.numberwriting
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import java.util.concurrent.atomic.DoubleAdder
 
 internal class NumberWriterDecimalTest {
 
@@ -13,6 +14,11 @@ internal class NumberWriterDecimalTest {
         val oneAndTen = 1.1F
         assertEquals("um real e dez centavos", numberWriter.writeNumber(oneAndTen))
         assertEquals("um real e dez centavos", numberWriter.writeNumber(oneAndTen.toDouble()))
+        assertEquals("um real e dez centavos", numberWriter.writeNumber(oneAndTen.toBigDecimal()))
+
+        val doubleAdder = DoubleAdder()
+        doubleAdder.add(oneAndTen.toDouble())
+        assertEquals("um real e dez centavos", numberWriter.writeNumber(doubleAdder))
     }
 
     @Test

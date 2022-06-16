@@ -7,3 +7,8 @@ If the tweet is no longer available, it can also be found here: [https://dev.to/
 The challenge is to write a financial value in words, e.g.: 100 = cem reais (in portuguese) or one hundred dollars (in english).
 
 I did it using kotlin and accepting any [Number](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/) type. It should work with values up to Long.MAX_VALUE.
+
+## Important notes
+
+- I haven't tested it with DoubleAccumulator and LongAccumulator classes
+- I guess BigInteger could be more explored

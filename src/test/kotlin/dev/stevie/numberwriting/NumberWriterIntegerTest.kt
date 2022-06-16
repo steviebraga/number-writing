@@ -3,6 +3,10 @@ package dev.stevie.numberwriting
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import java.math.BigInteger
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.atomic.LongAdder
 
 internal class NumberWriterIntegerTest {
 
@@ -15,6 +19,13 @@ internal class NumberWriterIntegerTest {
         assertEquals("um real", numberWriter.writeNumber(one.toShort()))
         assertEquals("um real", numberWriter.writeNumber(one.toInt()))
         assertEquals("um real", numberWriter.writeNumber(one))
+        assertEquals("um real", numberWriter.writeNumber(AtomicInteger(one.toInt())))
+        assertEquals("um real", numberWriter.writeNumber(AtomicLong(one)))
+        assertEquals("um real", numberWriter.writeNumber(BigInteger(one.toString())))
+
+        val longAdder = LongAdder()
+        longAdder.add(one)
+        assertEquals("um real", numberWriter.writeNumber(longAdder))
     }
 
     @Test

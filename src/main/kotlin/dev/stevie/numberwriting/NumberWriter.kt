@@ -1,10 +1,12 @@
 package dev.stevie.numberwriting
 
+import java.math.BigDecimal
+import java.util.concurrent.atomic.DoubleAdder
 import kotlin.math.pow
 
 class NumberWriter {
 
-    private val decimalNumberTypes = listOf(Float::class, Double::class)
+    private val decimalNumberTypes = listOf(Float::class, Double::class, BigDecimal::class, DoubleAdder::class)
 
     private val tensFromTwoToNineRange = 20..99
     private val hundredsRange = 100..999
