@@ -6,8 +6,6 @@ class NumberWriter {
 
     private val decimalNumberTypes = listOf(Float::class, Double::class)
 
-    private val unitsRange = 0..9
-    private val tensOfOneRange = 10..19
     private val tensFromTwoToNineRange = 20..99
     private val hundredsRange = 100..999
 
@@ -48,8 +46,8 @@ class NumberWriter {
 
     private fun getIntegerNumberName(number: Long): String {
         return when (number) {
-            in unitsRange -> getUnitName(number)
-            in tensOfOneRange -> getTensOfOneName(number)
+            in unitsNamesMap.keys -> unitsNamesMap[number]!!
+            in tensOfOneNamesMap.keys -> tensOfOneNamesMap[number]!!
             in tensFromTwoToNineRange -> getTenBasedName(number, tensFromTwoToNineNamesMap)
             in hundredsRange -> getTenBasedName(number, hundredsNamesMap)
             else -> getTenBasedName(number)
@@ -59,10 +57,6 @@ class NumberWriter {
     private fun getCurrencyString(number: Long) = if (number > 1) "reais" else "real"
 
     private fun getCentsString(number: Long) = if (number > 1) "centavos" else "centavo"
-
-    private fun getUnitName(number: Long) = if (number in unitsNamesMap.keys) unitsNamesMap[number]!! else ""
-
-    private fun getTensOfOneName(number: Long) = if (number in tensOfOneNamesMap.keys) tensOfOneNamesMap[number]!! else ""
 
     private fun getTenBasedName(number: Long, namesMap: Map<Long, String> = emptyMap()): String {
         var power = number.toString().length - 1
